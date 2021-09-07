@@ -42,12 +42,12 @@ class ImportCategoryUseCase {
     const categories = await this.loadCategories(file);
 
     categories.forEach(async category => {
-      const categoryAlreadyExists = this.categoriesRepository.findByName(
+      const categoryAlreadyExists = await this.categoriesRepository.findByName(
         category.name,
       );
 
       if (!categoryAlreadyExists) {
-        this.categoriesRepository.create({
+        await this.categoriesRepository.create({
           name: category.name,
           description: category.description,
         });
