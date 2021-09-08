@@ -12,15 +12,15 @@ class CreateSpecificationUseCase {
     private specificationsRepository: ISpecificationRepository,
   ) {}
 
-  execute({ name, description }: ICreateSpecificationDTO): void {
+  async execute({ name, description }: ICreateSpecificationDTO): Promise<void> {
     const specificationAlreadyExists =
-      this.specificationsRepository.findByname(name);
+      await this.specificationsRepository.findByname(name);
 
     if (specificationAlreadyExists) {
       throw new Error('Specification already exists');
     }
 
-    this.specificationsRepository.create({ name, description });
+    await this.specificationsRepository.create({ name, description });
   }
 }
 
