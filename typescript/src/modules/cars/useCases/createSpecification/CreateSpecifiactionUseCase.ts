@@ -6,7 +6,7 @@ import { AppError } from '@shared/errors/AppError';
 @injectable()
 export class CreateSpecificationUseCase {
   constructor(
-    @inject('SpecificationsReposirtory')
+    @inject('SpecificationsRepository')
     private specificationsRepository: ISpecificationRepository,
   ) {}
 
