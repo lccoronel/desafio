@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToOne, PrimaryColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryColumn } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Category } from './Category';
@@ -37,7 +37,7 @@ export class Car {
   @Column('boolean')
   available: boolean;
 
-  @ManyToOne(() => Specification)
+  @ManyToMany(() => Specification)
   @JoinTable({
     name: 'specifications_cars',
     joinColumns: [{ name: 'car_id' }],
