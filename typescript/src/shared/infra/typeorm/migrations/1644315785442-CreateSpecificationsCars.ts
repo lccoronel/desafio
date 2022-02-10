@@ -49,8 +49,8 @@ export class CreateSpecificationsCars1644315785442 implements MigrationInterface
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('specification_cars', 'FKCarSpecification');
-    await queryRunner.dropForeignKey('specification_cars', 'FKSpecificationCar');
-    await queryRunner.dropTable('specifactions_cars');
+    await queryRunner.dropForeignKey('specifications_cars', 'FKCarSpecification');
+    await queryRunner.dropForeignKey('specifications_cars', 'FKSpecificationCar');
+    await queryRunner.dropTable('specifications_cars');
   }
 }

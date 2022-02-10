@@ -11,7 +11,7 @@ export class UsersRepository implements IUsersReposiotry {
     this.repository = getRepository(User);
   }
 
-  async create({ name, email, driver_license, password, avatar, id }: ICreateUsersDTO): Promise<void> {
+  async create({ name, email, driver_license, password, avatar, id, is_admin }: ICreateUsersDTO): Promise<void> {
     const user = this.repository.create({
       name,
       email,
@@ -19,6 +19,7 @@ export class UsersRepository implements IUsersReposiotry {
       password,
       avatar,
       id,
+      is_admin,
     });
 
     await this.repository.save(user);
