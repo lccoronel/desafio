@@ -13,7 +13,7 @@ export class CarImage {
   image_name: string;
 
   @CreateDateColumn()
-  creted_at: Date;
+  created_at: Date;
 
   constructor() {
     if (!this.id) {
