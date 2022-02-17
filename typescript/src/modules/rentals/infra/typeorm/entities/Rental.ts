@@ -1,22 +1,33 @@
+import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 
+@Entity('rentals')
 export class Rental {
+  @PrimaryColumn()
   id: string;
 
+  @Column()
   car_id: string;
 
+  @Column()
   user_id: string;
 
-  start_date: string;
+  @Column('timestamp')
+  start_date: Date;
 
-  end_date: string;
+  @Column('timestamp')
+  end_date: Date;
 
+  @Column('timestamp')
   expected_return_date: Date;
 
+  @Column('int')
   total: number;
 
+  @CreateDateColumn()
   created_at: Date;
 
+  @UpdateDateColumn()
   updated_at: Date;
 
   constructor() {
