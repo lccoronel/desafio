@@ -20,7 +20,7 @@ describe('Create category controller', () => {
     ).query(
       `
       INSERT INTO USERS(id, name, email, password, is_admin, created_at, driver_license)
-      values('${id}', 'admin', 'admin@rentx.com.br', '${password}', true, 'now()', 'XXXXXX')
+      values('${id}', 'admin123', 'admin@rentalx.com.br', '${password}', true, 'now()', 'XXXXXX')
       `,
     );
   });
@@ -30,37 +30,23 @@ describe('Create category controller', () => {
     await connection.close();
   });
 
-  it('should be able to create a new category', async () => {
+  it('should be able to list all available categories', async () => {
     const responseSession = await request(app)
       .post('/sessions')
-      .send({ email: 'admin@rentx.com.br', password: 'admin' });
+      .send({ email: 'admin@rentalx.com.br', password: 'admin123' });
 
     const { token } = responseSession.body;
 
-    const response = await request(app)
+    await request(app)
       .post('/categories')
-      .send({ name: 'Category supertest', description: 'Category supertest' })
+      .send({ name: 'Category supertest list', description: 'Category supertest list' })
       .set({
         Authorization: `Bearer ${token}`,
       });
 
-    expect(response.status).toBe(201);
-  });
+    const response = await request(app).get('/categories');
 
-  it('should not be able to create a new category with a category already exists', async () => {
-    const responseSession = await request(app)
-      .post('/sessions')
-      .send({ email: 'admin@rentx.com.br', password: 'admin' });
-
-    const { token } = responseSession.body;
-
-    const response = await request(app)
-      .post('/categories')
-      .send({ name: 'Category supertest', description: 'Category supertest' })
-      .set({
-        Authorization: `Bearer ${token}`,
-      });
-
-    expect(response.status).toBe(400);
+    expect(response.status).toBe(200);
+    expect(response.body.length).toBe(1);
   });
 });
