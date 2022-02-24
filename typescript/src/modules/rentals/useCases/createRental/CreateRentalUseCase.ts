@@ -2,6 +2,7 @@ import { inject, injectable } from 'tsyringe';
 
 import { Rental } from '@modules/rentals/infra/typeorm/entities/Rental';
 import { IRentalsRepository } from '@modules/rentals/repositories/IRentalsRepository';
+import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
 import { IDateProvider } from '@shared/container/providers/IDateProvider';
 import { AppError } from '@shared/errors/AppError';
 
@@ -19,6 +20,9 @@ export class CreateRentalUseCase {
 
     @inject('DayjsDateProvider')
     private dateProvider: IDateProvider,
+
+    @inject('CarsRepository')
+    private carsRepository: ICarsRepository,
   ) {}
 
   async execute({ user_id, car_id, expected_return_date }: IRequest): Promise<Rental> {
@@ -38,6 +42,8 @@ export class CreateRentalUseCase {
     if (compare < minimumHour) throw new AppError('Invalid return time');
 
     const rental = await this.rentalsRepository.create({ user_id, car_id, expected_return_date });
+
+    await this.carsRepository.updateAvailable(car_id, false);
 
     return rental;
   }
