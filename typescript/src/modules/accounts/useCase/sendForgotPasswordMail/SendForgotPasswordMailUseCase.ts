@@ -5,6 +5,7 @@ import { IUsersReposiotry } from '@modules/accounts/repositories/IUsersRepositor
 import { IUsersTokenRepository } from '@modules/accounts/repositories/IUsersTokenRepository';
 import { AppError } from '@shared/errors/AppError';
 import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider';
+import { IMailProvider } from '@shared/container/providers/MailProvider/IMailProvider';
 
 @injectable()
 export class SendForgotPasswordMailUseCase {
@@ -17,9 +18,12 @@ export class SendForgotPasswordMailUseCase {
 
     @inject('DayjsDateProvider')
     private dateProvider: IDateProvider,
+
+    @inject('MailProvider')
+    private mailProvider: IMailProvider,
   ) {}
 
-  async execute(email: string) {
+  async execute(email: string): Promise<void> {
     const user = await this.usersRepository.filterByEmail(email);
 
     if (!user) throw new AppError('User does not exists');
@@ -33,5 +37,7 @@ export class SendForgotPasswordMailUseCase {
       user_id: user.id,
       expires_date,
     });
+
+    await this.mailProvider.sendMail(email, 'Recuperação de senha', `O Link é ${token}`);
   }
 }
