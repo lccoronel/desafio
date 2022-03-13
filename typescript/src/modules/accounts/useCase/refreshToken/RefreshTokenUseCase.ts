@@ -4,7 +4,7 @@ import { sign, verify } from 'jsonwebtoken';
 import { IUsersTokenRepository } from '@modules/accounts/repositories/IUsersTokenRepository';
 import auth from '@config/auth';
 import { AppError } from '@shared/errors/AppError';
-import { IDateProvider } from '@shared/container/providers/IDateProvider';
+import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider';
 
 interface IPayload {
   sub: string;

@@ -3,7 +3,7 @@ import { inject, injectable } from 'tsyringe';
 import { Rental } from '@modules/rentals/infra/typeorm/entities/Rental';
 import { IRentalsRepository } from '@modules/rentals/repositories/IRentalsRepository';
 import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
-import { IDateProvider } from '@shared/container/providers/IDateProvider';
+import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider';
 import { AppError } from '@shared/errors/AppError';
 
 interface IRequest {

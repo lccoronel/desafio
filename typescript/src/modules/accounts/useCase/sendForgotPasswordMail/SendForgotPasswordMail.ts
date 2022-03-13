@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { IUsersReposiotry } from '@modules/accounts/repositories/IUsersRepository';
 import { IUsersTokenRepository } from '@modules/accounts/repositories/IUsersTokenRepository';
 import { AppError } from '@shared/errors/AppError';
-import { IDateProvider } from '@shared/container/providers/IDateProvider';
+import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider';
 
 @injectable()
 export class SendForgotPasswordMailUseCase {

@@ -1,6 +1,7 @@
 import { container } from 'tsyringe';
 
-import '@shared/container/providers';
+import '@shared/container/providers/MailProvider';
+import '@shared/container/providers/DateProvider';
 
 import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
 import { IUsersReposiotry } from '@modules/accounts/repositories/IUsersRepository';
