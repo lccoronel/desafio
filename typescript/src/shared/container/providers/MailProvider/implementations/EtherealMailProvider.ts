@@ -17,6 +17,8 @@ export class EtherealMailProvider implements IMailProvider {
           secure: account.smtp.secure,
           auth: { user: account.user, pass: account.pass },
         });
+
+        this.client = transporter;
       })
       .catch(err => console.error(err));
   }
