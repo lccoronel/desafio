@@ -25,7 +25,7 @@ The main libs and tools I used in these projects was:
 
 ### Screen
 
-autentication request and your response
+authentication request and your response
 <img width="1078" alt="Screen Shot 2022-05-28 at 08 02 14" src="https://user-images.githubusercontent.com/54275445/170822689-426646b4-e743-47a6-b4f6-9548bb1d4494.png">
 
 
